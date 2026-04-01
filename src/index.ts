@@ -1,4 +1,4 @@
-export { ApiClient } from './client';
+export { ApiClient, COUNTRIES_ALL, COUNTRIES_LOOKUP, from './client';
 export type {
   LookupResponse,
   NumberAdditionsResponse,
@@ -6,5 +6,7 @@ export type {
   EmailVerificationResponse,
   PhoneVerificationResponse,
   LookupOptions,
+  GlobalSearchOptions,
   SearchOptions,
+  AddressSearchOptions,
 } from './types';
