@@ -11,7 +11,6 @@ describe('ApiClient', () => {
   beforeEach(() => {
     mockAxios = {
       get: vi.fn(),
-      defaults: { headers: {} },
     };
     vi.mocked(axios.create).mockReturnValue(mockAxios);
     client = new ApiClient('test-api-key');
@@ -23,7 +22,7 @@ describe('ApiClient', () => {
 
   it('should lookup address', async () => {
     mockAxios.get.mockResolvedValue({
-      data: { street: 'Damrak', number: '1', city: 'Amsterdam' },
+      data: { data: { street: 'Damrak', number: '1', city: 'Amsterdam' } },
     });
 
     const result = await client.lookup('nl', { postalcode: '1012LM', number: '1' });
@@ -32,7 +31,7 @@ describe('ApiClient', () => {
 
   it('should verify email', async () => {
     mockAxios.get.mockResolvedValue({
-      data: { email: 'test@example.com', status: 'valid' },
+      data: { data: { email: 'test@example.com', status: 'valid' } },
     });
 
     const result = await client.verifyEmail('test@example.com');
@@ -41,7 +40,7 @@ describe('ApiClient', () => {
 
   it('should verify phone', async () => {
     mockAxios.get.mockResolvedValue({
-      data: { number: '+31612345678', valid: true },
+      data: { data: { number: '+31612345678', valid: true } },
     });
 
     const result = await client.verifyPhone('+31612345678');
